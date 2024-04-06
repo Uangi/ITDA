@@ -17,11 +17,16 @@ public class Weather {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence-generator")
     @SequenceGenerator(name = "sequence-generator", sequenceName = "YOUR_SEQUENCE_NAME", allocationSize = 1)
-    public Long id;
+    @Column(name = "weather_num")
+    public Long weather_num;
 
-    @Column(nullable = false, length = 30)
-    public String title;
+    @Column(name = "nowtemp")
+    public String nowtemp;
 
-    @Column(nullable = false, length = 100)
-    public String contents;
+    @Column(name = "hightemp")
+    public String hightemp; // temp_max 본래 값 이름
+
+    @Column(name = "lowtemp")
+    public String lowtemp;
+
 }

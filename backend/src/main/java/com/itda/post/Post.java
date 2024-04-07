@@ -1,4 +1,4 @@
-package com.itda.backend;
+package com.itda.post;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -13,15 +13,15 @@ import lombok.RequiredArgsConstructor;
 public class WeatherService {
 
     @Autowired
-    private WeatherRepository postRepository;
+    private WeatherRepository weatherRepository;
 
     @Transactional
     public Weather save(Weather weather) { // 게시물 저장 메서드
-        return postRepository.save(weather); // 받은 게시물을 db에 저장하고 저장된 게시물 반환
+        return weatherRepository.save(weather); // 받은 게시물을 db에 저장하고 저장된 게시물 반환
     }
 
     @Transactional(readOnly = true)
     public List<Weather> findAll() { // 모든 게시물 조회
-        return postRepository.findAll();
+        return weatherRepository.findAll();
     }
 }

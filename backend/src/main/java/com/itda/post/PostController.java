@@ -1,4 +1,4 @@
-package com.itda.backend;
+package com.itda.post;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,22 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
+@RestController
+public class PostController {
 
-@RestController 
-public class PostController { 
- 
-	@Autowired 
-	private PostService postService; 
-	 
-	@CrossOrigin 
-	@PostMapping("/post") 
-	public ResponseEntity<?> save(@RequestBody Post post) { 
-		return new ResponseEntity<>(postService.save(post), HttpStatus.CREATED); 
-	} 
-	 
-	@CrossOrigin 
-	@GetMapping("/post") 
-	public ResponseEntity<?> findAll() { 
-		return new ResponseEntity<>(postService.findAll(), HttpStatus.OK); 
-	} 
+	@Autowired
+	private PostService postService;
+
+	@CrossOrigin
+	@PostMapping("/post")
+	public ResponseEntity<?> save(@RequestBody Post post) {
+		return new ResponseEntity<>(postService.save(post), HttpStatus.CREATED);
+	}
+
+	@CrossOrigin
+	@GetMapping("/post")
+	public ResponseEntity<?> findAll() {
+		return new ResponseEntity<>(postService.findAll(), HttpStatus.OK);
+	}
 }

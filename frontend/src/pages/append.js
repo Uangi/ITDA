@@ -1,9 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const cityNamesMap = {
+    '서울': 'Seoul',
+    '부산': 'Busan',
+    '인천': 'Incheon',
+    '대구': 'Daegu',
+    '대전': 'daejeon',
+    '광주': 'gwangju',
+    '울산': 'ulsan',
+    '제주': 'jeju',
+    '고양': 'goyang',
+    '세종': 'sejong',
+    '용인': 'yongin',
+    '용산': 'yongsan',
+    
+
+
+    // 추가 도시 매핑이 필요합니다.
+};
+
 const Append = () => {
     const [currentTime, setCurrentTime] = useState('');
     const [weatherData, setWeatherData] = useState(null);
+    const [cityName, setCityName] = useState('');
 
     useEffect(() => {
         const convertTime = () => {
@@ -15,40 +35,37 @@ const Append = () => {
 
         const fetchWeatherData = async () => {
             try {
-                const weatherResponse = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=46b55a9f61cc588200575a3dda8e3069&units=metric');
+                // 도시 이름을 영어로 변환합니다.
+                const cityNameInEnglish = cityNamesMap[cityName] || cityName;
+                const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameInEnglish},kr&appid=46b55a9f61cc588200575a3dda8e3069&units=metric`);
                 const weatherData = weatherResponse.data;
                 setWeatherData(weatherData);
-                sendDataToServer(weatherData); // 서버에 데이터 전송
             } catch (error) {
                 console.error('날씨 정보를 가져오는 중 오류 발생:', error);
-            }
-        };
-
-        const sendDataToServer = async (weatherData) => {
-            try {
-                const dataToSend = {
-                    nowtemp: weatherData.main.temp,
-                    hightemp: weatherData.main.temp_max,
-                    lowtemp: weatherData.main.temp_min
-                };
-                const serverResponse = await axios.post('http://localhost:8081/weat', dataToSend);
-                console.log('서버 응답:', serverResponse);
-            } catch (error) {
-                console.error('서버에 데이터를 전송하는 중 오류 발생:', error);
             }
         };
 
         const currentTime = convertTime();
         setCurrentTime(currentTime);
 
-        fetchWeatherData(); // 날씨 정보 가져오기
-    }, []);
+        if (cityName.trim() !== '') {
+            fetchWeatherData();
+        }
+    }, [cityName]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
 
     return (
         <div>
+            <form onSubmit={handleSubmit}>
+                <input type="text" value={cityName} onChange={(e) => setCityName(e.target.value)} placeholder="지역명을 입력해주세요" />
+                <button type="submit">확인</button>
+            </form>
             <span className="nowtime">{currentTime}</span>
             <span>현재날씨</span>
-            <h3>서울</h3>
+            <h3>{cityName}</h3>
             {weatherData && (
                 <div>
                     <h3>{weatherData.weather[0].description}</h3>

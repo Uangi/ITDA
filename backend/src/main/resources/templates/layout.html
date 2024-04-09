@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<title>Spring Boot Board</title>
+
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}"/>
+<!-- <link rel="stylesheet" th:href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css"> -->
+</head>
+<body>
+
+<!-- 네이바 화면에 navbarFragment 화면을 띄워라 -->
+<nav th:replace="navbar :: navbarFragment"></nav>
+
+<!-- content는 내 맘대로 / 나머지는 문법 -->
+<th:block layout:fragment="content"></th:block>
+ 
+<script th:src="@{/bootstrap.min.js}"></script>
+ 
+ <th:block layout:fragment="deleteScript"></th:block>
+ 
+</body>
+</html>

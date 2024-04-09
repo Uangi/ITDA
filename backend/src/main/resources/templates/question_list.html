@@ -1,0 +1,83 @@
+<html layout:decorate="~{layout}">
+<meta charset="UTF-8">
+
+<div layout:fragment="content" class="container my-3">
+	<table class="table">
+	<thead class="table-dark">
+		<tr class="text-center">
+			<th>번호</th>
+			<th style="width: 50%">제목</th>
+			<th>글쓴이</th>
+			<th>작성일</th>
+		</tr>
+	</thead>
+	<tbody>
+	<!-- loop = 고유값이 들어가게 됨 -->
+		<tr class="text-center" th:each="question,loop : ${paging}">
+			<td th:text="${paging.totalElements - (paging.number * paging.size) - loop.index}"></td>
+			<td class="text-start">
+			<a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+			
+			<!-- Question.java의 answerList에 댓글의 개수가 있음 -->
+			<span class="text-danger small ms-1" th:if="${#lists.size(question.answerList) > 0}"
+			th:text="${#lists.size(question.answerList)}">
+			</span>
+			</td>
+			<td><span th:if="${question.author!=null}" th:text="${question.author.userName}"></span></td>
+			<td th:text="${#temporals.format(question.createdData,'yyyy-MM-dd HH:mm')}"></td>
+		</tr>
+	</tbody>
+	</table>
+	
+<!-- 페이징 처리 -->
+<!-- 페이징이 없는게 T  -> 근데 반대라서 F -->
+<!-- th:with : A to B (=scope 영역) -->
+<div th:if="${!paging.isEmpty()}">
+	<nav aria-label="Page navigation">
+		<ul class="pagination justify-content-center" th:with="startNumber=${(paging.number/10)}*10+1,
+		endNumber=(${paging.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${paging.totalPages}">
+		
+		
+		<!-- 맨앞으로 가기 '<<' -->
+		<li><a class="page-link" th:href="@{/question/list?page=1}">&laquo;</a></li>
+		<!-- (=                  th:href="@{|?page=1|}") 이거랑 위에랑 같은 코딩임-->
+		
+		<!-- 한칸 앞으로 가기 '<' (=이전페이지로가기 page=${paging.number}) -->
+		<!--'display:none' css넣은거임 -->
+		<li class="page-item" th:style="${paging.first}?'display:none'">
+			<a class="page-link" th:href="@{/question/list(page=${paging.number})}">&lsaquo;</a>
+			<!--                 th:href="@{|?page=${paging.number}|}" 이거랑 위에랑 같은 코딩임 -->
+		</li>
+		
+		<!-- pageNum 숫자 만들기 - 반복문으로 -->
+		<!-- {paging.number}+1 : 스프링은 페이지시작이 0부터니까-->
+		<!-- th:text="${page}" : 눈에 보이는 페이지-->
+		<!-- th:href="@{/question/list(page=${page})} : 페이지가 들어있는 주소 (?대신 괄호 써서 하는 페이징) -->
+		
+		<li class="page-item" th:each="page : ${#numbers.sequence(startNumber,endNumber)}"
+		th:classappend="(${page}==${paging.number}+1) ? 'active'">
+			<a class="page-link" th:href="@{/question/list(page=${page})}" th:text="${page}"></a>
+			<!--                 th:href="@{|?page=${page}|}" -->
+		</li>
+		
+		<!-- display:none = 화면 숨겨줘 -->
+		<!-- display:block = 화면 보여줘 -->
+		<li class="page-item" th:style="${paging.last} ? 'display:none'">
+			<a class="page-link" th:href="@{/question/list(page=${paging.number}+2)}">&rsaquo;</a>
+			<!--                 th:href="@{|?page=${paging.number+2}|}" -->
+		</li>
+
+		<li><a class="page-link" th:href="@{/question/list(page=${paging.totalPages})}">&raquo;</a>
+			<!--                 th:href="@{|?page=${paging.totalPages}|}" -->
+		</li>
+		
+		</ul>
+	</nav>
+</div>
+	
+	
+	
+<a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
+	
+</div>
+</html>

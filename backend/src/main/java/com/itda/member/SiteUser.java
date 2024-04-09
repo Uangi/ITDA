@@ -1,4 +1,4 @@
-package com.itda.user;
+package com.itda.member;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "member")
 public class SiteUser {
 
     @Id
@@ -23,6 +23,7 @@ public class SiteUser {
     @Column(unique = true)
     private String userName;
     private String password;
+
     @Column
     private String email;
 }

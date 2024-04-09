@@ -1,0 +1,190 @@
+<html layout:decorate="~{layout}">
+<meta charset="UTF-8">
+
+<div layout:fragment="content" class="container my-3">
+
+	<h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
+	<div class="card my-3">
+		<div class="card-body">
+	
+			<!-- 주소에 url이 포함되어있으면 utext로 변경 -->
+			<!-- 생성된 객체 commonUtil의 markdown() 안에 질문내용 적어주기  -->
+			<div class="card-text" th:utext="${@commonUtil.markdown(question.content)}"></div>
+			<div class="d-flex justify-content-end">
+			
+			<!-- 질문 수정일 -->
+			
+			<div th:if="${question.modifyDate!=null}" class="badge bg-light text-dark p-2 text-start mx-3">
+				<div class="mb-2">수정일 : </div>
+				<!-- 라이브러리 x 따로 설치 x - ${#temporals.} : 날짜를 바로 사용할 수 있게 하는 친구 -->
+				<div th:text="${#temporals.format(question.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
+			</div>
+			
+			<!-- 질문 입력일 -->
+			
+			<div class="badge bg-light text-dark p-2 text-start">
+			
+				<div class="mb-2">
+						<span th:if="${question.author!=null}" 
+						th:text="${question.author.userName}">
+						</span>
+				</div>
+			
+				<!-- 라이브러리 x 따로 설치 x - ${#temporals.} : 날짜를 바로 사용할 수 있게 하는 친구 -->
+				<div th:text="${#temporals.format(question.createdData, 'yyyy-MM-dd HH:mm')}"></div>
+			</div>
+		</div>
+		
+			<!-- 질문 수정 -->
+				<div class="my-3">
+						
+					<!-- 좋아요 표시 -->	
+					<!--${#lists.size(question.voter)} =  Question안에 있는 vote의 개수를 count해서 보여줄거임 -->
+					<a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+					th:data-uri="@{|/question/vote/${question.id}|}">😎👍
+					<span class="badge rounded-pill bg-success" th:text="${#lists.size(question.voter)}"></span>
+					</a>
+				
+					<a th:href="@{|/question/modify/${question.id}|}" class="btn btn-sm btn-outline-secondary"
+					sec:authorize="isAuthenticated()" th:if="${question.author!=null and #authentication.getPrincipal().
+					getUsername()==question.author.userName}" th:text="수정"></a>
+				
+				
+					<a href="javascript:void(0)" th:data-uri="@{|/question/delete/${question.id}|}" 
+					class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
+					th:if="${question.author!=null and #authentication.getPrincipal().getUsername()==question.author.userName}"
+					th:text="삭제"></a>
+			</div>
+		</div>
+	</div>
+	
+	<!-- answer.java에 있는 List<Answer>의 개수를 구하면 됨 -->
+	<!-- 넘어오는 lists의 사이즈 -->
+	<h5 class="border-bottom my-3 py-2"
+	th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|">
+	</h5>
+	
+	<div class="card my-3" th:each="answer : ${question.answerList}">
+	
+		<a th:id="|answer_${answer.id}|"></a>
+	
+		<div class="card-body">
+			<div class="card-text" th:utext="${@commonUtil.markdown(answer.content)}"></div>
+			
+			<div class="d-flex justify-content-end">
+			
+				<!-- 답변수정일 -->
+				<div th:if="${answer.modifyDate!=null}" class="badge bg-light text-dark p-2 text-start mx-3">
+					<div class="mb-2">수정일: </div>
+					<div th:text="${#temporals.format(answer.modifyDate,'yyyy-MM-dd HH:mm')}"></div>
+				</div>
+			
+				<div class="badge bg-light text-dark p-2 text-start">
+					<!-- 이름 -->
+					<div class="mb-2">
+						<span th:if="${answer.author!=null}" 
+						th:text="${answer.author.userName}">
+						</span>
+					</div>
+					<!-- 날짜 -->
+					<!-- 라이브러리 x 따로 설치 x - ${#temporals.} : 날짜를 바로 사용할 수 있게 하는 친구 -->
+					<div th:text="${#temporals.format(answer.createdData,'yyyy-MM-dd HH:mm')}"></div>
+				</div>
+				
+			</div>
+		
+				<div class="my-3">
+
+					<!-- 좋아요 표시 -->	
+					<!--${#lists.size(answer.voter)} =  Question안에 있는 vote의 개수를 count해서 보여줄거임 -->
+					<a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+					th:data-uri="@{|/answer/vote/${answer.id}|}">😎👍
+					<span class="badge rounded-pill bg-success" th:text="${#lists.size(answer.voter)}"></span>
+					</a>
+
+			<!-- 답변 수정 -->
+				
+					<a th:href="@{|/answer/modify/${answer.id}|}" class="btn btn-sm btn-outline-secondary"
+						sec:authorize="isAuthenticated()" th:if="${answer.author!=null and #authentication.getPrincipal().
+						getUsername()==answer.author.userName}" th:text="수정"></a>
+		
+			<!-- 답변 삭제 -->
+				<a href="javascript:void(0);" th:data-uri="@{|/answer/delete/${answer.id}|}" class="delete btn btn-sm btn-outline-secondary"
+					sec:authorize="isAuthenticated()" th:if="${answer.author!=null and #authentication.getPrincipal().
+					getUsername()==answer.author.userName}" th:text="삭제"></a>
+			
+			
+			
+				</div>
+		</div>
+	</div>
+	
+	
+	<!-- 답변을 달 때는 부모의 번호를 알고있고, 가지고있어야함 -->
+	<!-- 그래서 부모의 id를 넘겨야지 answer.java의 question으로 넘어갈 수 있음 -->
+	<form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post" class="my-3">
+	
+	<!-- 에러메세지 -->
+		<div th:replace="form_errors :: formErrorsFragment"></div>
+	
+	<br/>
+		<!-- answer.java에 content로 만들어놓음 -->
+		<!-- id는 앞에 <div>로 읽어올거임 -->
+		<!-- rows 가로 두께 10-->
+		
+		<!-- 인증이 안됐으면 이걸 띄우고 / disabled = 창을 잠궈라 -->
+		<textarea sec:authorize="isAnonymous()" disabled="disabled" rows="10" th:field="*{content}" class="form-control"></textarea>
+		
+		<!-- 인증이 됐으면 이걸 띄워 -->
+		<textarea sec:authorize="isAuthenticated()" rows="10" th:field="*{content}" class="form-control"></textarea>
+		
+		<input type="submit" value="답변등록" class="btn btn-primary my-2"/>
+	</form>
+</div>
+
+
+<script type="text/javascript" layout:fragment="deleteScript">
+
+	//delete이름가진거 몽땅 가지고와서 deleteBtn에 담아둠
+	const deleteBtn = document.getElementsByClassName("delete");
+	
+	//deleteBtn이라는 이름을 가진 여러개의 버튼을 array배열안에 넣음
+	//반복문으로 btn이름으로 하나씩 꺼냄
+	Array.from(deleteBtn).forEach(function(btn){
+		
+		//비동기방식
+		//클릭했으면 function함수 실행해
+		btn.addEventListener('click',function(){
+			
+			if(confirm("게시글을 삭제하시겠습니까")){
+				
+				//주소 = data-uri읽어오면 됨
+				//어떻게? this.dataset.uri;이렇게!
+				location.href=this.dataset.uri;
+			}
+			
+		});
+		
+	});
+
+	const recommendBtn = document.getElementsByClassName("recommend");
+	
+	Array.from(recommendBtn).forEach(function(btn){
+		
+		btn.addEventListener('click',function(){
+
+			if(confirm("게시글을 😎👍👍하시겠습니까")){
+				
+				//주소 = data-uri읽어오면 됨
+				location.href=this.dataset.uri;
+			}
+			
+		});
+		
+	});
+	
+	
+
+</script>
+
+</html>

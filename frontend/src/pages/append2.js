@@ -24,7 +24,7 @@ const cityNamesMap = {
     // 추가 도시 매핑이 필요합니다.
 };
 
-const Append = () => {
+const Append2 = () => {
     const [currentTime, setCurrentTime] = useState('');
     const [weatherData, setWeatherData] = useState(null);
     const [cityName, setCityName] = useState('');
@@ -103,4 +103,4 @@ const Append = () => {
     );
 };
 
-export default Append;
+export default Append2;

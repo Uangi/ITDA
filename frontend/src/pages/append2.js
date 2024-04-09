@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import key from '../apikey.js';
-import maleData from '../fassion/maleData.js';
-import femaleData from '../fassion/femaleData.js';
+import maleData from '../fashion/maleData.js';
+import femaleData from '../fashion/femaleData.js';
 import { Link } from 'react-router-dom/cjs/react-router-dom.js';
 
 const cityNamesMap = {
@@ -141,17 +141,17 @@ const Append2 = () => {
                 </div>
             <h1> 추천 패션 리스트</h1>
             {fashionData.map((item) => (
-                <div key = {item.id}>
-                    <h4>{item.name}</h4>
-        {item.description2 && item.description2 === weatherData.weather[0].description.toLowerCase() && (
+    <div key={item.id}>
+        <h4>{item.name}</h4>
+        {item.description2 && weatherData.weather[0].description.toLowerCase().includes(item.description2) && (
             <p>
                 <Link to={`/clothes/${item.description}`}>
                     <img src={item.photo} alt="" width={150}/>
                 </Link>
             </p>
         )}
-                </div>
-            ))}
+    </div>
+))}
         </div>
         
     );

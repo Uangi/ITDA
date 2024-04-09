@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import key from '../apikey.js';
 const cityNamesMap = {
     '서울': 'Seoul',
     '부산': 'Busan',
@@ -14,7 +14,7 @@ const cityNamesMap = {
     '세종': 'sejong',
     '용인': 'yongin',
     '용산': 'yongsan',
-    
+
 
 
     // 추가 도시 매핑이 필요합니다.
@@ -33,11 +33,16 @@ const Append = () => {
             return `${month}월 ${date}일 `;
         };
 
+        
+
         const fetchWeatherData = async () => {
             try {
                 // 도시 이름을 영어로 변환합니다.
                 const cityNameInEnglish = cityNamesMap[cityName] || cityName;
-                const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameInEnglish},kr&appid=46b55a9f61cc588200575a3dda8e3069&units=metric`);
+                const WEATHER_API_KEY = key.WEATHER_API_KEY;
+
+
+                const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameInEnglish},kr&appid=${WEATHER_API_KEY}`);
                 const weatherData = weatherResponse.data;
                 setWeatherData(weatherData);
             } catch (error) {
@@ -61,7 +66,7 @@ const Append = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <input type="text" value={cityName} onChange={(e) => setCityName(e.target.value)} placeholder="지역명을 입력해주세요" />
-                <button type="submit">확인</button>
+                {/* <button type="submit">확인</button> */}
             </form>
             <span className="nowtime">{currentTime}</span>
             <span>현재날씨</span>

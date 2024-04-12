@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import key from '../apikey.js';
-import maleData from '../fashion/maleData.js';
-import femaleData from '../fashion/femaleData.js';
-import { Link } from 'react-router-dom/cjs/react-router-dom.js';
+import FashionList from './FashionList';
 
 const cityNamesMap = {
     '서울': 'Seoul',
@@ -18,10 +17,7 @@ const cityNamesMap = {
     '세종': 'sejong',
     '용인': 'yongin',
     '용산': 'yongsan',
-    '파주': 'paju',
-
-
-    // 추가 도시 매핑이 필요합니다.
+    '파주': 'paju'
 };
 
 const Append2 = () => {
@@ -29,7 +25,7 @@ const Append2 = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [cityName, setCityName] = useState('');
     const [gender, setGender] = useState('male');
-    const [fashionData, setFashionData] = useState(maleData);
+    const [fashionData, setFashionData] = useState([]);
 
     useEffect(() => {
         const convertTime = () => {
@@ -39,45 +35,24 @@ const Append2 = () => {
             return `${month}월 ${date}일 `;
         };
 
-        const determineSeason = (temp) => {
-            // 섭씨 기온으로 변환
-            const celsiusTemp = temp - 273.15;
-            if (celsiusTemp < 10) {
-                return '겨울';
-            } else if (celsiusTemp < 20) {
-                return '봄/가을';
-            } else {
-                return '여름';
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('/api/fashion');
+                setFashionData(response.data);
+            } catch (error) {
+                console.error('Error fetching fashion data:', error);
             }
         };
-    
-        const filteredFashionData = () => {
-            const season = weatherData ? determineSeason(weatherData.main.temp) : null;
-            const currentDateData = gender === 'male' ? maleData : femaleData;
-    
-            return currentDateData.filter(item => {
-                const weatherDescription = weatherData.weather[0].description.toLowerCase();
-                return item.season.includes(season) && (item.weather === weatherDescription || item.description2 === weatherDescription);
-            });
-        };
-    
-        const handleSubmit = (e) => {
-            e.preventDefault();
-        };
-    
-        // @@
+
         const fetchWeatherData = async () => {
+            
             try {
-                // 도시 이름을 영어로 변환합니다.
-                const cityNameInEnglish = cityNamesMap[cityName] || cityName;
                 const WEATHER_API_KEY = key.WEATHER_API_KEY;
-
-
+                const cityNameInEnglish = cityNamesMap[cityName] || cityName;
                 const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameInEnglish},kr&appid=${WEATHER_API_KEY}`);
-                const weatherData = weatherResponse.data;
-                setWeatherData(weatherData);
+                setWeatherData(weatherResponse.data);
             } catch (error) {
-                console.error('날씨 정보를 가져오는 중 오류 발생:', error);
+                console.error('Error fetching weather data:', error);
             }
         };
 
@@ -86,6 +61,7 @@ const Append2 = () => {
 
         if (cityName.trim() !== '') {
             fetchWeatherData();
+            fetchData();
         }
     }, [cityName]);
 
@@ -95,15 +71,12 @@ const Append2 = () => {
 
     const handleGenderChange = (e) => {
         setGender(e.target.value);
-        setFashionData(e.target.value === 'male' ? maleData : femaleData );
-    }
+    };
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <input type="text" value={cityName} onChange={(e) => setCityName(e.target.value)} placeholder="지역명을 입력해주세요" />
-                {/* <button type="submit">확인</button> */}
-
-                
             </form>
             <span className="nowtime">{currentTime}</span>
             <span>현재날씨</span>
@@ -137,23 +110,20 @@ const Append2 = () => {
                         />
                         여자
                     </label>
-                    </h2>
-                </div>
+                </h2>
+            </div>
             <h1> 추천 패션 리스트</h1>
-            {fashionData.map((item) => (
-    <div key={item.id}>
-        <h4>{item.name}</h4>
-        {item.description2 && weatherData.weather[0].description.toLowerCase().includes(item.description2) && (
-            <p>
-                <Link to={`/clothes/${item.description}`}>
-                    <img src={item.photo} alt="" width={150}/>
-                </Link>
-            </p>
-        )}
-    </div>
-))}
+            {fashionData.map((item, index) => (
+                <div key={index}>
+                    <h4>{item.subject}</h4>
+                    <p>
+                        <Link to={`/clothes/${item.url}`}>
+                            <img src={item.image} alt={item.subject} width={150} />
+                        </Link>
+                    </p>
+                </div>
+            ))}
         </div>
-        
     );
 };
 

@@ -23,6 +23,9 @@ public class FashionController {
     public List<Fashion> getFashionData() throws Exception {
 
         return fashionService.getFashionDatas();
+        // List<Fashion> fashionList = fashionService.getFashionDatas();
+        // fashionService.writeFashionDataToCSV(fashionList, filePath);
+        // return fashionList;
     }
 
     @GetMapping

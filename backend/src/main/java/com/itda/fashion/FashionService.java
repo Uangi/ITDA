@@ -18,11 +18,12 @@ import java.io.FileWriter;
 
 @Service
 public class FashionService {
-    private static final String filePath = "C:/ITDA/fashion/fashionData.csv";
+    private final String filePath;
     private final String fashionUrl;
 
-    public FashionService(@Value("${fashion.url}") String fashionUrl) {
+    public FashionService(@Value("${fashion.url}") String fashionUrl, @Value("${fashion.filePath}") String filePath) {
         this.fashionUrl = fashionUrl;
+        this.filePath = filePath;
     }
 
     @PostConstruct

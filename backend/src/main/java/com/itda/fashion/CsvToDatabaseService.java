@@ -3,7 +3,6 @@ package com.itda.fashion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,12 +13,12 @@ public class CsvToDatabaseService {
 
     private final String filePath;
 
+    @Autowired
+    private FashionRepository fashionRepository;
+
     public CsvToDatabaseService(@Value("${fashion.filePath}") String filePath) {
         this.filePath = filePath;
     }
-
-    @Autowired
-    private FashionRepository fashionRepository; // 데이터베이스 Repository
 
     public void saveCsvDataToDatabase(String filePath) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -31,8 +30,8 @@ public class CsvToDatabaseService {
                     .image(parts[0])
                     .subject(parts[1])
                     .build(); // 생성자를 통해 필드 설정
-            fashionRepository.save(fashion); // 데이터베이스에 저장
+            fashionRepository.save(fashion); // DB 에 저장
         }
-        // reader.close();
+        reader.close();
     }
 }

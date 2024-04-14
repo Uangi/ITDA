@@ -14,7 +14,6 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.opencsv.CSVWriter;
-import java.io.FileWriter;
 
 @Service
 public class FashionService {
@@ -31,9 +30,13 @@ public class FashionService {
         List<Fashion> fashionList = new ArrayList<>();
         Document document = Jsoup.connect(fashionUrl).get();
         Elements contents = document.select("ul.style-list li.style-list-item");
+
+        // @@@
+
         // Elements contents = document.select("MAIL_CSS_QUERY");
         // targetUrl = Fashion_URL
         // connectAndGetDocument = getFashionDatas
+
         for (Element content : contents) {
             Fashion fashion = Fashion.builder()
                     .image(content.select("a img").attr("abs:src")) // 이미지

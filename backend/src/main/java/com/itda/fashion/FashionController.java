@@ -3,8 +3,6 @@ package com.itda.fashion;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,24 +12,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class FashionController {
+    private final FashionRepository fashionRepository;
 
     @Autowired
-    private FashionService fashionService;
+    public FashionController(FashionRepository fashionRepository) {
+        this.fashionRepository = fashionRepository;
+    }
 
-    @CrossOrigin
     @GetMapping("/fashion")
-    public List<Fashion> getFashionData() throws Exception {
-
-        return fashionService.getFashionDatas();
-        // List<Fashion> fashionList = fashionService.getFashionDatas();
-        // fashionService.writeFashionDataToCSV(fashionList, filePath);
-        // return fashionList;
+    public List<Fashion> getFashionDataFromDB() {
+        // FashionRepository를 사용하여 DB에서 데이터를 가져옴
+        return fashionRepository.findAll();
     }
+    // @Autowired
+    // private FashionService fashionService;
 
-    @GetMapping
-    public String fashion(Model model) throws Exception {
-        List<Fashion> fashionList = fashionService.getFashionDatas();
-        model.addAttribute("fashion", fashionList);
-        return "fashion";
-    }
+    // @CrossOrigin
+    // @GetMapping("/fashion")
+    // public List<Fashion> getFashionData() throws Exception {
+
+    // return fashionService.getFashionDatas();
+    // List<Fashion> fashionList = fashionService.getFashionDatas();
+    // fashionService.writeFashionDataToCSV(fashionList, filePath);
+    // return fashionList;
+    // }
+
+    // @GetMapping
+    // public String fashion(Model model) throws Exception {
+    // List<Fashion> fashionList = fashionService.getFashionDatas();
+    // model.addAttribute("fashion", fashionList);
+    // return "fashion";
+    // }
 }

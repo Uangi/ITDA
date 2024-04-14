@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import key from '../apikey.js';
+import csvToDatabaseRequest from './gender/csvToDatabaseRequest.js'; // 새로운 파일 추가
 
 const cityNamesMap = {
     '서울': 'Seoul',
@@ -25,6 +26,8 @@ const Append2 = () => {
     const [cityName, setCityName] = useState('Seoul');
     const [gender, setGender] = useState('male');
     const [fashionData, setFashionData] = useState([]);
+    const [csvDataToDB, setCsvDataToDB] = useState(null);
+    const [isDataSaved, setIsDataSaved] = useState(false);
 
     useEffect(() => {
         const convertTime = () => {
@@ -34,17 +37,6 @@ const Append2 = () => {
             return `${month}월 ${date}일 `;
         };
 
-        const getFashionData = async () => {
-            try {
-                const response = await axios.get('/api/fashion');
-                const filteredFashionData = response.data.filter((item, index) => index !== 0);
-                setFashionData(filteredFashionData);
-            } catch (error) {
-                console.error('Error fetching fashion data:', error);
-            }
-        };
-        
-        
         const fetchWeatherData = async () => {
             try {
                 const WEATHER_API_KEY = key.WEATHER_API_KEY;
@@ -55,22 +47,42 @@ const Append2 = () => {
                 console.error('Error fetching weather data:', error);
             }
         };
+        
+        const getFashionData = async () => {
+            try {
+                const response = await axios.get('/api/fashion');
+                const filteredFashionData = response.data.filter((item, index) => index !== 0);
+                setFashionData(filteredFashionData);
+            } catch (error) {
+                console.error('Error fetching fashion data:', error);
+            }
+        };
 
         const currentTime = convertTime();
         setCurrentTime(currentTime);
-
+        
         if (cityName.trim() !== '') {
             fetchWeatherData();
             getFashionData();
         }
+
+
     }, [cityName]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
     };
 
-    const handleGenderChange = (e) => {
+    const handleGenderChange = async (e) => {
         setGender(e.target.value);
+        if (e.target.value === 'female') {
+            try {
+                const csvDataToDB = await csvToDatabaseRequest(); // 새로운 파일에서 가져온 함수 호출
+                setCsvDataToDB(csvDataToDB);   // DB 상태 화면 단에 업데이트
+            } catch (error) {
+                console.error('Error fetching fashion data:', error);
+            }
+        }
     };
 
     return (
@@ -98,6 +110,7 @@ const Append2 = () => {
                             value="male"
                             checked={gender === 'male'}
                             onChange={handleGenderChange}
+                            
                         />
                         남자
                     </label>

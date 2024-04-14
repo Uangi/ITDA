@@ -31,19 +31,15 @@ public class FashionService {
         Document document = Jsoup.connect(fashionUrl).get();
         Elements contents = document.select("ul.style-list li.style-list-item");
 
-        // @@@
-
-        // Elements contents = document.select("MAIL_CSS_QUERY");
-        // targetUrl = Fashion_URL
-        // connectAndGetDocument = getFashionDatas
-
-        for (Element content : contents) {
+        for (int i = 0; i < 20; i++) { // 데이터 20개 가져오기
+            Element element = contents.get(i);
             Fashion fashion = Fashion.builder()
-                    .image(content.select("a img").attr("abs:src")) // 이미지
-                    .subject(content.select("a span ").text()) // 설명
+                    .image(element.select("a img").attr("abs:src")) // 이미지
+                    .subject(element.select("a span ").text()) // 설명
                     .build();
             fashionList.add(fashion);
         }
+
         writeFashionDataToCSV(fashionList, filePath);
         return fashionList;
 

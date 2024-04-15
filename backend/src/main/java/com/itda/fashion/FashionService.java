@@ -1,62 +1,56 @@
 package com.itda.fashion;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Value;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Service;
-import com.opencsv.CSVWriter;
 
 @Service
 public class FashionService {
-    private final String filePath;
-    private final String fashionUrl;
 
-    public FashionService(@Value("${fashion.url}") String fashionUrl, @Value("${fashion.filePath}") String filePath) {
-        this.fashionUrl = fashionUrl;
-        this.filePath = filePath;
+    private WebDriver driver;
+    private WebElement element;
+    private String url;
+
+    public FashionService() {
+        // WebDriver 경로 설정
+        System.setProperty("webdriver.chrome.driver",
+                "C:/ITDA/backend/chromedriver-win64/chromedriver.exe");
+
+        // WebDriver 옵션 설정
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-popup-blocking");
+
+        driver = new ChromeDriver(options);
+
+        url = "https://www.lookpin.co.kr/coordi";
     }
 
-    @PostConstruct
-    public List<Fashion> getFashionDatas() throws IOException {
-        List<Fashion> fashionList = new ArrayList<>();
-        Document document = Jsoup.connect(fashionUrl).get();
-        Elements contents = document.select("ul.style-list li.style-list-item");
+    public void activateBot() {
+        try {
+            driver.get(url);
 
-        for (int i = 0; i < 20; i++) { // 데이터 20개 가져오기
-            Element element = contents.get(i);
-            Fashion fashion = Fashion.builder()
-                    .image(element.select("a img").attr("abs:src")) // 이미지
-                    .subject(element.select("a span ").text()) // 설명
-                    .build();
-            fashionList.add(fashion);
+            Thread.sleep(2000);
+
+            element = driver.findElement(By.className("sc-gcUDKN.sHabK"));
+
+            element = driver.findElement(
+                    By.xpath("/html/div/section/main/div/div[2]/div[2]/section[4]/div[1]/div[1]/a/div/div/img"));
+            String image = element.getAttribute("image");
+
+            element = driver
+                    .findElement(By.xpath("/html/div/section/main/div/div[2]/div[2]/section[4]/div[1]/div[1]/div/p"));
+            String description = element.getText();
+
+            System.out.println("1위 노래는 [" + image + "]입니다.");
+            System.out.println("좋아요 수는 [" + description + "]입니다.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            driver.close();
         }
-
-        writeFashionDataToCSV(fashionList, filePath);
-        return fashionList;
-
     }
-
-    public void writeFashionDataToCSV(List<Fashion> fashionList, String filePath) throws IOException {
-        try (CSVWriter writer = new CSVWriter(new FileWriter(filePath))) {
-            // CSV 파일에 헤더 추가
-            String[] header = { "Image", "Subject" };
-            writer.writeNext(header);
-
-            // 패션 데이터를 CSV 파일에 쓰기
-            for (Fashion fashion : fashionList) {
-                String[] data = { fashion.getImage(), fashion.getSubject() };
-                writer.writeNext(data);
-            }
-        }
-    }
-
 }

@@ -13,13 +13,12 @@ import java.io.IOException;
 public class CsvController {
 
     private final String filePath;
-
-    public CsvController(@Value("${fashion.filePath}") String filePath) {
-        this.filePath = filePath;
-    }
-
-    @Autowired
     private CsvToDatabaseService csvToDatabaseService;
+
+    public CsvController(@Value("${fashion.filePath}") String filePath, CsvToDatabaseService csvToDatabaseService) {
+        this.filePath = filePath;
+        this.csvToDatabaseService = csvToDatabaseService;
+    }
 
     @GetMapping("/csvToDatabase")
     public String csvToDatabase() {

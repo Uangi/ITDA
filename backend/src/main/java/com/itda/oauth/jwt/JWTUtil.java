@@ -1,5 +1,7 @@
 package com.itda.oauth.jwt;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,15 @@ public class JWTUtil {
         secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8),
                 Jwts.SIG.HS256.key().build().getAlgorithm());
     }
+
+    // public String extractUsername(String token) {
+    // Claims claims = Jwts.parser()
+    // .setSigningKey(secretKey)
+    // .build()
+    // .parseClaimsJws(token)
+    // .getBody();
+    // return claims.getSubject();
+    // }
 
     public String getUsername(String token) {
 
@@ -49,4 +60,9 @@ public class JWTUtil {
                 .signWith(secretKey)
                 .compact();
     }
+
+    public Jws<Claims> parseClaims(String token) { // 복호화
+        return Jwts.parser().setSigningKey(secretKey).build().parseClaimsJws(token);
+    }
+
 }

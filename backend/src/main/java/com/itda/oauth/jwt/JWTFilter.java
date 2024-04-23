@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+@Component
 public class JWTFilter extends OncePerRequestFilter {
 
     private final JWTUtil jwtUtil;
@@ -27,7 +29,8 @@ public class JWTFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        String authorization = null;
+        String authorization = request.getHeader("Authorization");
+        System.out.println("사용자 줄겡 " + authorization);
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
 
@@ -49,7 +52,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
         // 토큰
         String token = authorization;
-        System.out.println("토큰 값 : " + token);
+
         if (jwtUtil.isExpired(token)) {
 
             System.out.println("token expired");
@@ -72,11 +75,16 @@ public class JWTFilter extends OncePerRequestFilter {
         CustomOAuth2User customOAuth2User = new CustomOAuth2User(userDTO);
 
         // 스프링 시큐리티 인증 토큰 생성
-        Authentication authToken = new UsernamePasswordAuthenticationToken(customOAuth2User, null,
+        Authentication authToken = new UsernamePasswordAuthenticationToken(customOAuth2User, customOAuth2User.getName(),
                 customOAuth2User.getAuthorities());
-        // 세션에 사용자 등록
-        SecurityContextHolder.getContext().setAuthentication(authToken);
 
+        // 세션에 사용자 등록 - 인증정보를 SecurityContextHolder에 저장
+        SecurityContextHolder.getContext().setAuthentication(authToken);
         filterChain.doFilter(request, response);
+        Authentication nametest2 = SecurityContextHolder.getContext().getAuthentication();
+
+        System.out.println("사용자명 : " + nametest2.getName());
+        System.out.println("어스토큰 : " + authToken);
+
     }
 }

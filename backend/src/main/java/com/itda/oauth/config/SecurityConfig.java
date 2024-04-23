@@ -86,7 +86,7 @@ public class SecurityConfig {
                 // oauth2
                 http
                                 .oauth2Login((oauth2) -> oauth2
-                                                .loginPage("/user") // 로그인 페이지로 연결
+                                                .loginPage("/api/user-info") // 로그인 페이지로 연결
                                                 .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
                                                                 .userService(customOAuth2UserService))
                                                 .successHandler(customSuccessHandler));
@@ -97,7 +97,9 @@ public class SecurityConfig {
                                 .antMatchers("/").permitAll()
                                 .antMatchers("/my").hasRole("USER")
                                 .antMatchers("/user").hasRole("USER")
-                                .antMatchers("/login").hasRole("USER")
+                                .antMatchers("/Login").hasRole("USER")
+                                .antMatchers("/api/user-info").hasRole("USER")
+                                .antMatchers("/api/logout").hasRole("USER")
                                 .anyRequest().authenticated();
 
                 // 세션 설정 : STATELESS

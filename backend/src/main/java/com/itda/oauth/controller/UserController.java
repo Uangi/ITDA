@@ -1,9 +1,14 @@
 package com.itda.oauth.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +19,7 @@ import com.itda.oauth.repository.UserRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api")
 public class UserController {
 
     private final JWTUtil jwtUtil;
@@ -43,6 +48,31 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(userEntity);
+        return ResponseEntity.ok().body(userEntity);
+    }
+
+    // 로그아웃 엔드포인트
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
+        // 현재 세션의 토큰과 쿠키를 삭제합니다.
+        invalidateSession(request, response);
+        return ResponseEntity.ok().build();
+    }
+
+    // 세션과 쿠키 삭제 메서드
+    private void invalidateSession(HttpServletRequest request, HttpServletResponse response) {
+        // 세션을 무효화합니다.
+        request.getSession().invalidate();
+
+        // 쿠키를 삭제합니다.
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                cookie.setMaxAge(0);
+                cookie.setValue("");
+                cookie.setPath("/");
+                response.addCookie(cookie);
+            }
+        }
     }
 }

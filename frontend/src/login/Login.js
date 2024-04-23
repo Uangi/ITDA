@@ -12,12 +12,30 @@ function Login() {
     window.location.href = "http://localhost:8081/oauth2/authorization/naver";
   }
 
-  const handleLogout = () => {
-    // 로그아웃 처리
+  const handleLogout = async () => {
+  try {
+    if (!token) return; // 토큰이 없으면 요청을 보내지 않음
+
+    // 서버의 엔드포인트 URL
+    const endpointUrl = 'http://localhost:8081/api/logout';
+
+    // 토큰을 헤더에 포함하여 요청
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+
+    // Axios를 사용하여 서버에 POST 요청을 보냅니다.
+    const response = await axios.post(endpointUrl, null, { headers, withCredentials: true });
+
+    // 성공적으로 로그아웃 요청이 완료되면 클라이언트 측에서도 로그아웃 상태로 업데이트합니다.
     setToken("");
     setIsLoggedIn(false);
     setUserInfo(null);
+  } catch (error) {
+    // 오류 처리
+    console.error('Error logging out:', error);
   }
+};
 
   useEffect(() => {
     // 페이지가 로드될 때 토큰이 있는지 확인하여 로그인 상태 설정

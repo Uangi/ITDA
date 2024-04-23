@@ -7,15 +7,13 @@ function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
   const [userInfo, setUserInfo] = useState(null); // 사용자 정보 상태 관리
 
-  
   // 네이버 로그인 요청
   const onNaverLogin = () => {
     window.location.href = "http://localhost:8081/oauth2/authorization/naver";
-    // window.location.href = "http://localhost:8081/oauth2/code/google";
   }
-  // 로그아웃 처리
+
   const handleLogout = () => {
-    // 로그아웃 API 호출 또는 로컬 상태 및 쿠키 초기화 등
+    // 로그아웃 처리
     setToken("");
     setIsLoggedIn(false);
     setUserInfo(null);
@@ -24,9 +22,10 @@ function Login() {
   useEffect(() => {
     // 페이지가 로드될 때 토큰이 있는지 확인하여 로그인 상태 설정
     const cookies = document.cookie.split(';');
-    const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('Authorization='));
+    const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('Authorization'));
     if (tokenCookie) {
       setIsLoggedIn(true); // 토큰이 있으면 로그인 상태로 설정
+      setToken(tokenCookie.split('=')[1]); // 토큰 값 설정
     }
   }, []);
 
@@ -44,7 +43,11 @@ function Login() {
         };
 
         // Axios를 사용하여 서버에 GET 요청을 보냅니다.
-        const response = await axios.get(endpointUrl, { headers, withCredentials: true} );
+        const response = await axios.get(endpointUrl, { headers, withCredentials: true });
+
+        // // JWT 토큰 디코딩하여 사용자 정보 추출
+        // const decodedToken = jwtDecode(token);
+        // console.log(decodedToken);
 
         // 서버로부터 받은 사용자 정보를 상태에 설정합니다.
         setUserInfo(response.data);
@@ -67,7 +70,7 @@ function Login() {
       {isLoggedIn ? ( // 로그인 상태에 따라 버튼 표시 여부 결정
         <>
           <button onClick={handleLogout}>로그아웃</button>
-          <div>사용자 이름: {userInfo && userInfo.username}</div>
+          <div>사용자 이름: {userInfo && userInfo.name}</div>
         </>
       ) : (
         <button onClick={onNaverLogin}>로그인</button>

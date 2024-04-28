@@ -1,0 +1,217 @@
+.social_login[data-v-11fa5f15] {
+    margin-top: 40px;   
+}
+body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, select, table, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+*, :after, :before {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+body, button, input, select, table, textarea {
+    font-feature-settings: "frac" 0,"numr" 0;
+    color: #222;
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+body, html {
+    -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    font-feature-settings: "frac" 0,"numr" 0;
+    height: 100%;
+    touch-action: manipulation;
+    word-break: break-all;
+}
+style attribute {
+    --vh: 7.32px;
+    --global-header-height: 43.984375px;
+}
+*, :after, :before {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+*, :after, :before {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+
+.social_login>.btn[data-v-11fa5f15] {
+    margin-bottom: 8px;
+}
+.btn.btn_login_apple[data-v-420a5cda], .btn.btn_login_naver[data-v-420a5cda] {
+    border-color: #ebebeb;
+    color: #222;
+    position: relative;
+    width:300px;
+}
+.outline[data-v-420a5cda] {
+    border: 1px solid #d3d3d3;
+}
+.full[data-v-420a5cda] {
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    height: 52px;
+    letter-spacing: -.16px;
+    width: 100%;
+}
+.btn[data-v-420a5cda] {
+    align-items: center;
+    background-color: #fff;
+    color: rgba(34,34,34,.8);
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    padding: 0;
+}
+body, button, input, select, table, textarea {
+    font-feature-settings: "frac" 0,"numr" 0;
+    color: #222;
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+body, button, dd, div, dl, dt, fieldset, figcaption, figure, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, select, table, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+*, :after, :before {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+
+button {
+    appearance: auto;
+    /* font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-variant-alternates: ;
+    font-variant-position: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    font-optical-sizing: ;
+    font-kerning: ;
+    font-feature-settings: ;
+    font-variation-settings: ; */
+    text-rendering: auto;
+    /* color: buttontext; */
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    /* background-color: buttonface; */
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+body, html {
+    -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    font-feature-settings: "frac" 0,"numr" 0;
+    height: 100%;
+    touch-action: manipulation;
+    word-break: break-all;
+}
+style attribute {
+    --vh: 7.32px;
+    --global-header-height: 43.984375px;
+}
+*, :after, :before {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+*, :after, :before {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+
+.logo-social[data-v-11fa5f15] {
+    height: 24px;
+    left: 15px;
+    position: absolute;
+    top: 13px;
+    width: 24px;
+}
+*, :after, :before {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+user agent stylesheet
+svg:not(:root) {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+}
+.btn.btn_login_apple[data-v-420a5cda], .btn.btn_login_naver[data-v-420a5cda] {
+    border-color: #ebebeb;
+    color: #222;
+    position: relative;
+}
+.full[data-v-420a5cda] {
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    height: 52px;
+    letter-spacing: -.16px;
+    width: 100%;
+}
+.btn[data-v-420a5cda] {
+    align-items: center;
+    background-color: #fff;
+    color: rgba(34,34,34,.8);
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+body, button, input, select, table, textarea {
+    font-feature-settings: "frac" 0,"numr" 0;
+    color: #222;
+    font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,Helvetica Neue,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+*, :after, :before {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+user agent stylesheet
+:not(svg) {
+    transform-origin: 0px 0px;
+}

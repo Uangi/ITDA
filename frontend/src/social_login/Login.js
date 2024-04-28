@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Login.css';
+import { SiNaver } from 'react-icons/si';
 
 function Login() {
   const [token, setToken] = useState(""); // 토큰 상태 관리
@@ -24,6 +25,7 @@ function Login() {
       Authorization: `Bearer ${token}`
     };
 
+    // Axios를 사용하여 서버에 POST 요청을 보냅니다.
     const response = await axios.post(endpointUrl, null, { headers, withCredentials: true });
 
     // 성공적으로 로그아웃 요청이 완료되면 클라이언트 측에서도 로그아웃 상태로 업데이트합니다.
@@ -88,10 +90,17 @@ function Login() {
         <>
           <button onClick={handleLogout}>로그아웃</button>
           <div>사용자 이름: {userInfo && userInfo.name}</div>
-          <div>사용자 이름: {userInfo && userInfo.email}</div>
+          <div>사용자 이메일 : {userInfo && userInfo.email}</div>
+          <div>사용자 권한 : {userInfo && userInfo.role}</div>
         </>
       ) : (
-        <button onClick={onNaverLogin}>로그인</button>
+        <div className="naver-login">
+          <button onClick={onNaverLogin}>
+            <SiNaver color="green" />
+            네이버로 로그인
+          </button>
+            
+          </div>
       )}
     </>
   );

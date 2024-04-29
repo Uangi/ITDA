@@ -102,7 +102,8 @@ public class SecurityConfig {
                 // 경로별 인가 작업
                 http
                                 .authorizeRequests()
-                                .antMatchers("/", "/join", "/api/user-info", "/api/jwtlogin", "/Login", "/boardwrite")
+                                .antMatchers("/", "/join", "/api/user-info", "/api/jwtlogin", "/Login", "/boardwrite",
+                                                "/board/write")
                                 .permitAll()
                                 .antMatchers("/user", "/api/logout", "/req_meet/send_request",
                                                 "/req_meet/requests", "/req_meet/request_status",

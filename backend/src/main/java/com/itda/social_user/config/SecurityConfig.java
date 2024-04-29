@@ -1,9 +1,5 @@
-package com.itda.oauth.config;
+package com.itda.social_user.config;
 
-import com.itda.oauth.jwt.JWTFilter;
-import com.itda.oauth.jwt.JWTUtil;
-import com.itda.oauth.oauth2.CustomSuccessHandler;
-import com.itda.oauth.service.CustomOAuth2UserService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,10 +7,16 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
+
+import com.itda.social_user.jwt.JWTFilter;
+import com.itda.social_user.jwt.JWTUtil;
+import com.itda.social_user.oauth2.CustomSuccessHandler;
+import com.itda.social_user.service.CustomOAuth2UserService;
 
 import java.util.Collections;
 
@@ -33,6 +35,11 @@ public class SecurityConfig {
                 this.customOAuth2UserService = customOAuth2UserService;
                 this.customSuccessHandler = customSuccessHandler;
                 this.jwtUtil = jwtUtil;
+        }
+
+        @Bean
+        public BCryptPasswordEncoder bCryptPasswordEncoder() {
+                return new BCryptPasswordEncoder();
         }
 
         @Bean
@@ -86,20 +93,26 @@ public class SecurityConfig {
                 // oauth2
                 http
                                 .oauth2Login((oauth2) -> oauth2
-                                                .loginPage("/api/user-info") // 로그인 페이지로 연결
+                                                // .loginPage("/api/user-info") // 로그인 페이지로 연결
+                                                // .loginPage("/api/jwtlogin") // 로그인 페이지로 연결
                                                 .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
-                                                                .userService(customOAuth2UserService))
+                                                                .userService(customOAuth2UserService)) // 사용자 정보 가져오기
                                                 .successHandler(customSuccessHandler));
 
                 // 경로별 인가 작업
                 http
                                 .authorizeRequests()
-                                .antMatchers("/").permitAll()
-                                .antMatchers("/my").hasRole("USER")
-                                .antMatchers("/user").hasRole("USER")
-                                .antMatchers("/Login").hasRole("USER")
-                                .antMatchers("/api/user-info").hasRole("USER")
-                                .antMatchers("/api/logout").hasRole("USER")
+                                .antMatchers("/", "/join", "/api/user-info", "/api/jwtlogin", "/Login", "/boardwrite")
+                                .permitAll()
+                                .antMatchers("/user", "/api/logout", "/req_meet/send_request",
+                                                "/req_meet/requests", "/req_meet/request_status",
+                                                "/req_meet/accept_request", "req_meet/reject_request",
+                                                "/req_meet/schedule")
+                                .hasRole("USER")
+                                // .antMatchers().hasRole("USER")
+                                // .antMatchers("/api/user-info").hasRole("USER")
+                                // .antMatchers().hasRole("USER")
+                                // .antMatchers("/del/{username}").hasRole("USER")
                                 .anyRequest().authenticated();
 
                 // 세션 설정 : STATELESS

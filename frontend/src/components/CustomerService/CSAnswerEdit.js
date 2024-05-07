@@ -50,17 +50,14 @@ const CSAnswerEdit = () => {
     });
   };
 
-  // const handleEditEmailChange = (e) => {
-  //   setEditEmail(e.target.value);
-  // };
+  const handleCancel = () => {
+    history.push(`/answerDetail/${answerNo}`); // 취소 버튼 클릭 시 해당 답변 상세 페이지로 이동
+  };
 
   const handleAnswerSubmit = async (e) => {
     e.preventDefault();
     if (sessionId.trim() === 'admin') {
       try {
-        // console.log('넘기는 이메일 : ' + answerDetail.userEmail);
-        console.log('넘기는 내용:' + answerDetail.answerContent);
-        console.log('넘기는 제목:' + answerDetail.answerSubject);
         setAnswerDetail({ ...answerDetail});
         const response = await axios.post(
           'http://localhost:4000/answerEdit',
@@ -77,6 +74,7 @@ const CSAnswerEdit = () => {
       alert('권한 정보가 다릅니다.');
     }
   };
+  
   return (
     <div>
       AnswerEdit
@@ -90,14 +88,6 @@ const CSAnswerEdit = () => {
         />
       </div>
       <div>
-        {/* <input
-          type="text"
-          id="userEmail"
-          placeholder={answerDetail.userEmail}
-          onChange={handleEditEmailChange}
-          value={editEmail}
-        /> */}
-
         <input
           type="text"
           id="answerSubject"
@@ -105,14 +95,6 @@ const CSAnswerEdit = () => {
           onChange={handleChange}
           value={answerDetail.answerSubject}
         />
-
-        {/* <input
-          type="text"
-          id="userNickname"
-          placeholder={answerDetail.userNickname}
-          onChange={handleChange}
-          value={answerDetail.userNickname}
-        /> */}
       </div>
       <div>
         <textarea
@@ -123,7 +105,7 @@ const CSAnswerEdit = () => {
       </div>
       <div>
         <button onClick={handleAnswerSubmit}>수정</button>
-        <button>취소</button>
+        <button onClick={handleCancel}>취소</button> {/* 취소 버튼 클릭 시 handleCancel 함수 실행 */}
       </div>
     </div>
   );

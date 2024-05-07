@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom'; // useHistory 추가
+import { useHistory, useParams } from 'react-router-dom';
 import address from '../../API_KEY';
 
 const CSBoardEdit = () => {
@@ -11,7 +11,7 @@ const CSBoardEdit = () => {
     boardContent: '',
     boardSubject: '',
   });
-  const history = useHistory(); // useHistory 사용
+  const history = useHistory();
 
   const fetchSessionId = async () => {
     try {
@@ -72,6 +72,10 @@ const CSBoardEdit = () => {
     }
   };
 
+  const handleCancel = () => {
+    history.push(`/boardDetail/${boardNo}`); // 취소 버튼 클릭 시 해당 글 상세 페이지로 이동
+  };
+
   return (
     <div>
       <h2>BoardEdit</h2>
@@ -99,7 +103,7 @@ const CSBoardEdit = () => {
       </div>
       <div>
         <button onClick={handleBoardEdit}>등록</button>
-        <button>취소</button>
+        <button onClick={handleCancel}>취소</button>
       </div>
     </div>
   );

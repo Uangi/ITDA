@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import address from '../../API_KEY'
 
 const CSAnswerWrite = () => {
   const [sessionId, setSessionId] = useState('');
   const { boardNo } = useParams();
+  const history = useHistory(); // useHistory 추가
+
   const [boardDetail, setBoardDetail] = useState({
     boardContent: '',
     boardSubject: '',
@@ -55,13 +57,6 @@ const CSAnswerWrite = () => {
 
   const handleAnswerWrite = (e) => {
     e.preventDefault();
-    // if (
-    //   answer.userEmail.trim() === 'admin' &&
-    //   answer.userNickname.trim() === 'admin'
-    // ) {
-    // } else {
-    //   alert('관리자 권한이 필요합니다.');
-    // }
     handleSubmit(e);
   };
 
@@ -84,6 +79,10 @@ const CSAnswerWrite = () => {
     }
   };
 
+  const handleCancel = () => {
+    history.push(`/boardDetail/${boardNo}`); // 취소 버튼 클릭 시 해당 글 상세 페이지로 이동
+  };
+
   return (
     <div>
       AnswerWrite
@@ -95,6 +94,7 @@ const CSAnswerWrite = () => {
           value={boardDetail.boardNo || ''}
           readOnly
         />
+        <br/>
         유저가 남긴 글 내용
         <input
           type="text"
@@ -122,7 +122,7 @@ const CSAnswerWrite = () => {
       </div>
       <div>
         <button onClick={handleAnswerWrite}>등록</button>
-        <button>취소</button>
+        <button onClick={handleCancel}>취소</button> {/* 취소 버튼 클릭 시 handleCancel 함수 실행 */}
       </div>
     </div>
   );

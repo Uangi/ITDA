@@ -51,11 +51,14 @@ const CSBoardDetail = () => {
       alert('수정 권한은 작성자에게만 있습니다.');
     }
   };
+// const formattedDate = boardDetail.createdAt.replace("T", " ").replace(/:\d+\.\d+$/, "");
 
   return (
+    
     <div>
       <h2>BoardDetail</h2>
       <div>글번호 : {boardDetail.boardNo}</div>
+      <div>아이디 : {boardDetail.userId}</div>
       <div>제목 : {boardDetail.boardSubject}</div>
       <div>작성일 : {boardDetail.createdAt}</div>
       <div>내용 : {boardDetail.boardContent}</div>

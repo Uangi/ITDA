@@ -34,8 +34,8 @@ function CSBoardList() {
 
   return (
     <div>
-      <a href="/boardWrite">글쓰기</a>
-      <a href="/boardList">글목록</a>
+      <a href="/boardWrite">문의하기</a>
+      {/* <a href="/boardList">글목록</a> */}
       {boardList.map((boardItem, index) => (
         <div key={boardItem.boardNo}>
           <div>

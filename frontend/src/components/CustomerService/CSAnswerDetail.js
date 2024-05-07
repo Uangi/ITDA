@@ -10,7 +10,7 @@ const CSAnswerDetail = () => {
 
   const { answerNo } = useParams();
   const [answerDetail, setAnswerDetail] = useState([]);
-  const [adminEmail, setAdminEmail] = useState('');
+  // const [adminEmail, setAdminEmail] = useState('');
   const [sessionId, setSessionId] = useState('');
 
   console.log('answerNo : ', answerNo);
@@ -40,9 +40,9 @@ const CSAnswerDetail = () => {
     }
   };
 
-  const handleAdminEmailChange = (e) => {
-    setAdminEmail(e.target.value);
-  };
+  // const handleAdminEmailChange = (e) => {
+  //   setAdminEmail(e.target.value);
+  // };
 
   const handleAnswerWrite = () => {
     if (sessionId.trim() === 'admin') {
@@ -55,10 +55,9 @@ const CSAnswerDetail = () => {
   return (
     <div>
       <h2>AnswerDetail</h2>
-      <div>이메일: {answerDetail.userEmail}</div>
+      <div>아이디: {answerDetail.userId}</div>
       <div>답글번호 : {answerDetail.answerNo}</div>
       <div>제목 : {answerDetail.answerSubject}</div>
-      <div>닉네임 : {answerDetail.userNickname}</div>
       <div>작성일 : {answerDetail.createdAt}</div>
       <div>내용 : {answerDetail.answerContent}</div>
       <div>

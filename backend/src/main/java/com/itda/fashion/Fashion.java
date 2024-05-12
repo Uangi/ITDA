@@ -10,10 +10,8 @@ import javax.persistence.SequenceGenerator;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Getter
-@ToString
 @NoArgsConstructor
 @Entity(name = "Fashion")
 public class Fashion {
@@ -29,11 +27,12 @@ public class Fashion {
     private String image;
 
     @Column
-    private String subject;
+    private String description;
 
     @Builder
-    public Fashion(String subject, String image) {
-        this.subject = subject;
+    public Fashion(String description, String image) {
+        this.description = description;
         this.image = image;
     }
+
 }

@@ -1,0 +1,293 @@
+ /* 추천 데이트룩 버튼  */
+.date_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    
+  }
+
+  .date_title {
+    font-size: 28px;
+    color: royalblue;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+  }
+  
+  .date_title::before,.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: royalblue;
+  }
+  
+  .date_title::before {
+    width: 18px;
+    height: 18px;
+    background-color: royalblue;
+  }
+  
+  .date_title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+  
+  .date_message, .signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+  }
+  
+  .date_signin {
+    text-align: center;
+  }
+  
+  .date_signin a {
+    color: royalblue;
+  }
+  
+  .date_signin a:hover {
+    text-decoration: underline royalblue;
+  }
+  
+  .date_flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+  
+  .date_form label {
+    position: relative;
+  }
+  
+  .date_form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+  }
+  
+  .date_form label .input + span {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+  
+  .date_form label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+  }
+  
+  .date_form label .input:focus + span,.form label .input:valid + span {
+    top: 30px;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+  
+  .desc {
+    padding-top: 20px !important;
+    padding-bottom: 40px !important; 
+  }
+  
+
+  .date_form label .input:valid + span {
+    color: green;
+  }
+  
+  .date_submit {
+    border: none;
+    outline: none;
+    background-color: royalblue;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+  }
+  
+  .date_submit:hover {
+    background-color: rgb(56, 90, 194);
+  }
+  
+  /* 날씨 검색 칸 */
+  .weather_InputContainer {
+    outline: none; /* 포커스 시 외곽선 제거 */
+    border-color: red; /* 테두리 색상 유지 */
+    color: red; /* 폰트 색상 유지 */
+    border: 2px solid red;
+    border-radius: 30px;
+    width: 210px;
+    height: 50px;
+    margin-top: 50px;
+    padding-left:20px;
+  }
+
+  
+  
+  .weather_InputContainer::before {
+    content: "    "; /* 여백 추가 */
+    position: absolute;
+    top: 50%;
+    left: 15px; /* 왼쪽 여백 위치에 맞게 조정 */
+    transform: translateY(-50%);
+    pointer-events: none; /* 가상 요소를 클릭할 수 없도록 설정 */
+  }
+
+  .input {
+    width: 200px;
+    height: 40px;
+    border: none;
+    outline: none;
+    caret-color: rgb(255, 81, 0);
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    padding-left: 15px;
+    letter-spacing: 0.8px;
+    color: rgb(19, 19, 19);
+    font-size: 13.4px;
+    text-align: center;
+    
+  }
+
+  
+  /* 추천 데이트룩 조회 버튼  */
+  .datalook_button {
+    padding: 1.8em 4em;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: red; /* 텍스트의 색상 */
+    background-color: #fff; /* 배경색 */
+    border: 2px solid red; /* 테두리 색상 */
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease 0s; /* 호버 효과만 적용되도록 수정 */
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 50px;
+    
+  }
+  
+  .datalook_button:hover {
+    transform: translateY(-7px); /* 호버 시 이동 효과 */
+  }
+  
+  .datalook_button:active {
+    transform: translateY(-1px); /* 클릭 시 이동 효과 */
+  }
+  
+
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  /* 날씨  */
+  
+  /* 현재 날씨 밑으로 추천 데이트룩 보기 띄워두기 */
+
+
+/* 추천 패션 리스트 */
+.fashion_list {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.wrap-1 .w-icon.w-temp {
+  font-size: 30px; /* 원하는 크기로 조정하세요 */
+  padding-right: 30px;
+  padding-top: 20px;
+}
+
+/* 현재 기온 최대 기온 최저 기온  */
+.cmp-cur-weather .wrap-2.no-underline {
+  border-bottom: 0;
+  padding: 40px 1px 0 1px  !important;
+
+}
+
+
+.cmp-cur-weather .wrap-2 {
+  border-bottom: 1px solid #D4D4D4;
+  color: #777777;
+  overflow: hidden;
+  margin-top: 7px;
+}
+.cmp-cur-weather .wrap-2 span.val {
+
+  color: #777777;
+
+}
+
+
+ul, ol {
+  list-style: none;
+}
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, div, figure, article, header, nav, footer, section, aside {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  word-break: keep-all;
+  word-wrap: break-word;
+  white-space: normal;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+user agent stylesheet
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+.new-main {
+  color: #000;
+}
+body, input, textarea, select, button, table, th, td {
+  font-family: 'ns', sans-serif;
+  font-size: 13px;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}

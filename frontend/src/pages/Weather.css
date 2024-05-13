@@ -1,0 +1,389 @@
+element.style {
+}
+.wbg.wbg-type2.BGDB00 {
+    background-image: none;
+}
+.wbg.BGDB00 {
+    background-image: none;
+}
+.wbg {
+    background-size: auto 150%;
+    background-position: left top;
+    background-color: rgba(0,0,0,0);
+    background-repeat: no-repeat;
+}
+.cmp-cur-weather {
+    position: relative;
+    padding: 2px 5px;
+    /* z-index: -1; */
+}
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, div, figure, article, header, nav, footer, section, aside {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+    word-wrap: break-word;
+    white-space: normal;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+* {
+    box-sizing: border-box;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+.new-main {
+    color: #000;
+}
+body, input, textarea, select, button, table, th, td {
+    font-family: 'ns', sans-serif;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+/* @@@@@@@@@@@@@@@@@@@@@@@@ .cmp-cur-weather wbg wbg-type2 BGDB00 */
+
+element.style {
+}
+.cmp-cur-weather .w-temp {
+    font-size: 60px;
+    height: 80px;
+    margin-top: 11px;
+}
+.cmp-cur-weather .w-temp {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 50px;
+}
+.cmp-cur-weather ul li {
+    float: left;
+}
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, div, figure, article, header, nav, footer, section, aside {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+    word-wrap: break-word;
+    white-space: normal;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+* {
+    box-sizing: border-box;
+}
+user agent stylesheet
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+ul, ol {
+    list-style: none;
+}
+user agent stylesheet
+ul {
+    list-style-type: disc;
+}
+.new-main {
+    color: #000;
+}
+body, input, textarea, select, button, table, th, td {
+    font-family: 'ns', sans-serif;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+/* @@@@@@@ w-icon w-temp no-w */
+
+
+.cmp-cur-weather .wrap-2.no-underline {
+    border-bottom: 0;
+    font-size: 30px;
+}
+.cmp-cur-weather .wrap-2 {
+    border-bottom: 1px solid #D4D4D4;
+    overflow: hidden;
+    margin-top: 7px;
+}
+ul, ol {
+    list-style: none;
+}
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, div, figure, article, header, nav, footer, section, aside {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+    word-wrap: break-word;
+    white-space: normal;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+* {
+    box-sizing: border-box;
+}
+/* user agent stylesheet */
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.new-main {
+    color: #000;
+}
+body, input, textarea, select, button, table, th, td {
+    font-family: 'ns', sans-serif;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+/* @@@@@@@@ wrap-2 no-underline */
+
+.cmp-cur-weather .wrap-2 li {
+    width: calc(99.9% / 3);
+    position: relative;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    /* font-size: 18px; */
+}
+.cmp-cur-weather ul li {
+    float: left;
+}
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, div, figure, article, header, nav, footer, section, aside {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+    word-wrap: break-word;
+    white-space: normal;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+* {
+    box-sizing: border-box;
+}
+user agent stylesheet
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+ul, ol {
+    list-style: none;
+}
+user agent stylesheet
+ul {
+    list-style-type: disc;
+}
+.new-main {
+    color: #000;
+}
+body, input, textarea, select, button, table, th, td {
+    font-family: 'ns', sans-serif;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+.cmp-cur-weather .wrap-2 li:first-child:before {
+    display: none;
+}
+
+/* .cmp-cur-weather .wrap-2 li:before {
+    height: 58px;
+    top: 3px;
+} */
+.cmp-cur-weather .wrap-2 li:before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 44px;
+    left: 0;
+    top: 6px;
+    background-color: #D4D4D4;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+/* @@@@@@ <li>  */
+
+/* .cmp-cur-weather .wrap-2 .lbl {
+    font-size: 15px;
+    line-height: 18px;
+} */
+
+.cmp-cur-weather .wrap-2 .lbl {
+    display: block;
+    /* font-size: 16px; */
+    line-height: 26px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.cmp-cur-weather .ic-hm {
+    position: relative;
+    letter-spacing: -1px;
+}
+* {
+    box-sizing: border-box;
+}
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, div, figure, article, header, nav, footer, section, aside {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+    word-wrap: break-word;
+    white-space: normal;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+user agent stylesheet
+li {
+    text-align: -webkit-match-parent;
+}
+ul, ol {
+    list-style: none;
+}
+user agent stylesheet
+ul {
+    list-style-type: disc;
+}
+.new-main {
+    color: #000;
+}
+body, input, textarea, select, button, table, th, td {
+    font-family: 'ns', sans-serif;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+.cmp-cur-weather .ic-hm:before {
+    content: '';
+    display: inline-block;
+    padding-right: 2px;
+    vertical-align: middle;
+    width: 15px;
+    height: 14px;
+    /* background: url(../image/renew/ic_sym_17.png) no-repeat center center; */
+    background-size: auto 14px;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+/* @@@@@@@ lbl ic-hm */
+
+/* .cmp-cur-weather .wrap-2 .val {
+    font-size: 16px;
+    line-height: 25px;
+} */
+.cmp-cur-weather .wrap-2 .val {
+    color: #000;
+    display: block;
+    /* font-size: 15px; */
+    line-height: 26px;
+    font-weight: 500;
+    text-align: center;
+}
+* {
+    box-sizing: border-box;
+}
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, div, figure, article, header, nav, footer, section, aside {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+    word-wrap: break-word;
+    white-space: normal;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+user agent stylesheet
+li {
+    text-align: -webkit-match-parent;
+}
+ul, ol {
+    list-style: none;
+}
+user agent stylesheet
+ul {
+    list-style-type: disc;
+}
+.new-main {
+    color: #000;
+}
+body, input, textarea, select, button, table, th, td {
+    font-family: 'ns', sans-serif;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+/* @@@ val */

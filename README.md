@@ -1,2 +1,1 @@
-
-<img width="680" alt="image" src="https://github.com/Uangi/ITDA/assets/97930866/d972da8a-d031-45e6-9821-81ad99054ae4">
+![잇다1](https://github.com/Uangi/ITDA/assets/97930866/64b81860-0575-4c13-9a16-25eb316da2a9)

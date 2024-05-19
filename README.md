@@ -1,5 +1,7 @@
 
 <img width="680" alt="image" src="https://github.com/Uangi/ITDA/assets/97930866/d972da8a-d031-45e6-9821-81ad99054ae4">
+
+<img width="680" alt="image" src="https://github.com/Uangi/ITDA/assets/97930866/a629105e-a834-4d66-bc99-4938c7f58ab1">
 ![잇다2](https://github.com/Uangi/ITDA/assets/97930866/a629105e-a834-4d66-bc99-4938c7f58ab1)
 ![잇다3](https://github.com/Uangi/ITDA/assets/97930866/4575197a-6ddf-415c-a52f-c9612ec6152d)
 ![잇다4](https://github.com/Uangi/ITDA/assets/97930866/f6fd84ca-c10e-4095-8164-b9bde0a297c7)

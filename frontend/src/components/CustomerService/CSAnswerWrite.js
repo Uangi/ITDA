@@ -39,7 +39,7 @@ const CSAnswerWrite = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/boardDetail?boardNo=${boardNo}`,{withCredentials:true}
+          `${address.backendaddress}/boardDetail?boardNo=${boardNo}`,{withCredentials:true}
         );
         setBoardDetail(response.data);
       } catch (error) {
@@ -65,7 +65,7 @@ const CSAnswerWrite = () => {
     console.log('handleSubmit 실행');
 
     try {
-      const ok = await axios.post(`http://localhost:4000/answer/write`, {
+      const ok = await axios.post(`${address.backendaddress}/answer/write`, {
         ...answer,
         boardNo,
       });

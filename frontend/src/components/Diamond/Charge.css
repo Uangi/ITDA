@@ -1,0 +1,33 @@
+.button_blue {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #ccdff9;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+  
+  }
+  
+  .button_blue:hover {
+    background-color: #5291e9;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.2);
+  }
+
+.chargeButton {
+    width: 50%;
+    min-width: max-content;
+    height: 75px;
+    margin-top: 50px;
+    font-size: 25px !important;
+    background-color: pink !important;
+    border-color: #ffffff !important;
+}
+.chargeButton:hover {
+  background-color: #cc99cc !important;
+  border-color: #ffffff !important;
+}

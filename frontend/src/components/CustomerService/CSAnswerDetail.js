@@ -4,9 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import address from '../../API_KEY';
 
 const CSAnswerDetail = () => {
-  //파람 유알엘에서 디테일뒤에 숫자 읽기
-  //그걸로 스프링부트에 겟으로 요청해서 보드넘을 보내기
-  //그걸 찾는 함수 실행
 
   const { answerNo } = useParams();
   const [answerDetail, setAnswerDetail] = useState([]);
@@ -18,7 +15,7 @@ const CSAnswerDetail = () => {
   useEffect(() => {
     fetchSessionId();
     axios
-      .get(`http://localhost:4000/answerDetail?answerNo=${answerNo}`, {withCredentials:true})
+      .get(`${address.backendaddress}/answerDetail?answerNo=${answerNo}`, {withCredentials:true})
       .then((response) => {
         console.log(response.data);
         setAnswerDetail(response.data);
@@ -40,12 +37,8 @@ const CSAnswerDetail = () => {
     }
   };
 
-  // const handleAdminEmailChange = (e) => {
-  //   setAdminEmail(e.target.value);
-  // };
-
   const handleAnswerWrite = () => {
-    if (sessionId.trim() === 'admin') {
+    if (sessionId == 'admin') {
       window.location.href = `/answerEdit/${answerNo}`;
     } else {
       alert('수정 권한은 관리자에게만 있습니다.'); // 관리자 권한이 없는 경우 알림
@@ -61,15 +54,9 @@ const CSAnswerDetail = () => {
       <div>작성일 : {answerDetail.createdAt}</div>
       <div>내용 : {answerDetail.answerContent}</div>
       <div>
-        {/* 권한 코드 :{' '}
-        <input
-          type="text"
-          value={adminEmail}
-          onChange={handleAdminEmailChange}
-        /> */}
         <button onClick={handleAnswerWrite}>
           수정하기
-          {sessionId.trim() === 'admin' && (
+          {sessionId == 'admin' && (
             <Link to={`/answerEdit/${answerNo}`}></Link>
           )}
         </button>

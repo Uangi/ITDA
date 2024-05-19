@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PiArrowElbowDownRightThin } from "react-icons/pi";
 
 function CSAnswerItem({ answerItem }) {
   const {
@@ -12,15 +13,31 @@ function CSAnswerItem({ answerItem }) {
     answerContent,
   } = answerItem;
 
-  //console.log('answerNo:', answerNo);
+  function formatKoreanDateTime(dateTimeString) {
+    const date = new Date(dateTimeString);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    const formattedDateTime = `${year}. ${month}. ${day} / ${hours} : ${minutes} `;
+    return formattedDateTime;
+  }
+
+  const formattedDateTime = formatKoreanDateTime(createdAt);
+
+  const handleLinkClick = () => {
+    window.location.href = `/answerDetail/${answerNo}`; // 클릭 시 이동할 URL 설정
+  };
 
   return (
-    <div>
-      <Link to={`/answerDetail/${answerNo}`}>
-        ㄴ원글번호 : {boardNo} /답글번호: {answerNo} / 제목: {answerSubject} /
-        닉네임: {userNickname} / 작성일: {createdAt} / 내용 : {answerContent}
-      </Link>
-    </div>
+  <>
+    <div style={{width:'20%'}}><PiArrowElbowDownRightThin /></div>
+    <div style={{width:'60%', cursor: 'pointer', textDecoration: 'underline' }} onClick={handleLinkClick}>{answerSubject}</div>
+    <div style={{width:'20%'}}>관리자</div>
+    <div style={{width:'20%'}}>{formattedDateTime}</div>
+  </>
   );
 }
 

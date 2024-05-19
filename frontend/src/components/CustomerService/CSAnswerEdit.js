@@ -31,8 +31,7 @@ const CSAnswerEdit = () => {
     fetchSessionId();
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:4000/answerDetail?answerNo=${answerNo}`,{withCredentials:true}
+        const response = await axios.get(`${address.backendaddress}/answerDetail?answerNo=${answerNo}`,{withCredentials:true}
         );
         setAnswerDetail(response.data);
       } catch (error) {
@@ -56,11 +55,11 @@ const CSAnswerEdit = () => {
 
   const handleAnswerSubmit = async (e) => {
     e.preventDefault();
-    if (sessionId.trim() === 'admin') {
+    if (sessionId == 'admin') {
       try {
         setAnswerDetail({ ...answerDetail});
         const response = await axios.post(
-          'http://localhost:4000/answerEdit',
+          `${address.backendaddress}/answerEdit`,
           answerDetail, {withCredentials:true}
         );
         if (response.status === 200) {

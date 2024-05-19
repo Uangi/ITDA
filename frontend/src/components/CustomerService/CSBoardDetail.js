@@ -10,11 +10,14 @@ const CSBoardDetail = () => {
   const [sessionId, setSessionId] = useState('');
   
   console.log('boardNo : ', boardNo);
+  console.log('11:' + boardDetail.boardWriteId)
+  console.log('22:' + sessionId)
+  console.log((boardDetail.boardWriteId == sessionId))
 
   useEffect(() => {
     fetchSessionId();
     axios
-      .get(`http://localhost:4000/boardDetail?boardNo=${boardNo}`, {withCredentials:true})
+      .get(`${address.backendaddress}/boardDetail?boardNo=${boardNo}`, {withCredentials:true})
       .then((response) => {
         console.log(response.data);
         setBoardDetail(response.data);
@@ -30,14 +33,15 @@ const CSBoardDetail = () => {
         withCredentials: true 
       });
       setSessionId(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error('Error fetching session id:', error);
     }
   };
 
   const handleAnswerWrite = () => {
-    if (sessionId.trim() === 'admin') { // 세션 아이디가 admin일 때만 동작하도록 수정
+    
+
+    if (sessionId == 'admin') { // 세션 아이디가 admin일 때만 동작하도록 수정
       window.location.href = `/answerWrite/${boardNo}`;
     } else {
       alert('관리자 권한이 필요합니다.'); // 관리자 권한이 없는 경우 알림
@@ -45,28 +49,28 @@ const CSBoardDetail = () => {
   };
 
   const handleAnswerEdit = () => {
-    if (boardDetail.boardWriteId === sessionId) {
+    if (boardDetail.boardWriteId == sessionId) {
       window.location.href = `/boardEdit/${boardNo}`;
     } else {
       alert('수정 권한은 작성자에게만 있습니다.');
     }
   };
-// const formattedDate = boardDetail.createdAt.replace("T", " ").replace(/:\d+\.\d+$/, "");
 
   return (
     
-    <div>
-      <h2>BoardDetail</h2>
-      <div>글번호 : {boardDetail.boardNo}</div>
-      <div>아이디 : {boardDetail.userId}</div>
-      <div>제목 : {boardDetail.boardSubject}</div>
-      <div>작성일 : {boardDetail.createdAt}</div>
-      <div>내용 : {boardDetail.boardContent}</div>
-      <div>
-        <button onClick={handleAnswerEdit}>
+    <div >
+      <h2 style={{ width: '80%', margin: 'auto', marginTop: '50px', textAlign: 'center' ,border: '2px solid ',color:'red',marginBottom:'60px' ,justifyContent:'center'}}>BoardDetail</h2>
+      <div style={{ width: '80%', margin: 'auto', marginTop: '50px', textAlign: 'center' ,border: '2px solid ',color:'red',marginBottom:'30px'}}>
+      <div>NO.   {boardDetail.boardNo}</div>
+      <div>ID.   {boardDetail.userId}</div>
+      <div>Title.   {boardDetail.boardSubject}</div>
+      <div>Date.   {boardDetail.createdAt}</div>
+      <div>문의내용   {boardDetail.boardContent}</div></div>
+      <div style={{ width: '80%', margin: 'auto', marginTop: '50px', textAlign: 'center' ,marginBottom:'60px' ,justifyContent:'center'}}>
+        <button  className='csboard_button' onClick={handleAnswerEdit} style={{ width: '80%', margin: 'auto', marginTop: '50px', textAlign: 'center' ,border: '2px solid ',color:'red'}}>
           수정하기
         </button>
-        <button onClick={handleAnswerWrite}>
+        <button className='csboard_button' onClick={handleAnswerWrite} style={{ width: '80%', margin: 'auto', marginTop: '50px', textAlign: 'center' ,border: '2px solid ',color:'red',marginBottom:'60px'}}>
           답글달기
           
         </button>

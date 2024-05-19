@@ -30,7 +30,7 @@ const CSBoardEdit = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/boardDetail?boardNo=${boardNo}`, {withCredentials:true}
+          `${address.backendaddress}/boardDetail?boardNo=${boardNo}`, {withCredentials:true}
         );
         setBoardDetail(response.data);
       } catch (error) {
@@ -57,7 +57,7 @@ const CSBoardEdit = () => {
         console.log('넘기는 제목:' + boardDetail.boardSubject);
         setBoardDetail({ ...boardDetail});
         const response = await axios.post(
-          `http://localhost:4000/board/edit`,
+          `${address.backendaddress}/board/edit`,
           boardDetail,{withCredentials:true}
         );
         if (response.status === 200) {

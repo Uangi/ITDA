@@ -14,7 +14,15 @@
 
 <img width="602" alt="잇다이미지" src="https://github.com/Uangi/ITDA/assets/97930866/e85614f2-80e0-4feb-928d-3df0c0f71724">
 
-<img width="631" alt="잇다 날씨" src="https://github.com/Uangi/ITDA/assets/97930866/6aab03b4-ae33-40e0-a6d0-dffc6a29d510">
 
-<img width="631" alt="잇다 날씨" src="https://github.com/Uangi/ITDA/assets/97930866/2c4a387c-586c-4a7b-858c-45ffa2ab0f00">
+https://github.com/Uangi/ITDA/assets/97930866/986c5a91-4559-40c2-984c-60b60d0b8aff
+
+
+
+
+<img width="631" alt="잇다 날씨" src="https://github.com/Uangi/ITDA/assets/97930866/986c5a91-4559-40c2-984c-60b60d0b8aff">
+
+
+
+<img width="631" alt="잇다 땡큐" src="https://github.com/Uangi/ITDA/assets/97930866/2c4a387c-586c-4a7b-858c-45ffa2ab0f00">
 

@@ -39,9 +39,17 @@ Frontend
 ![이미지파일첨부](https://github.com/Uangi/ITDA/assets/97930866/b0005df6-0fce-46d0-88de-5de1118a41e9)
 ![로그인](https://github.com/Uangi/ITDA/assets/97930866/3a1bde34-1e92-49b2-9bd1-bb2171592fca)
 
+![결제 1](https://github.com/Uangi/ITDA/assets/97930866/981f892f-546b-4453-b89a-d8d03608e29a)
+
+![결제 2](https://github.com/Uangi/ITDA/assets/97930866/e7a68610-52dd-4890-8b35-5d2f86c484a4)
+
 ![만남신청하기](https://github.com/Uangi/ITDA/assets/97930866/5d018e18-a51f-4465-8ff6-ec8d9fe4a4a7)
 
 ![만남요청받기](https://github.com/Uangi/ITDA/assets/97930866/2b461191-2e6b-43d3-a8dd-7da8d4debb34)
+
+![날씨](https://github.com/Uangi/ITDA/assets/97930866/36135825-f0d1-44dc-9f83-6ea942d8008d)
+![날씨2](https://github.com/Uangi/ITDA/assets/97930866/4ff153f2-02de-457c-bbcb-604b0782087d)
+
 
 ![고객센터](https://github.com/Uangi/ITDA/assets/97930866/8113998b-6087-4310-9195-25c622116ed7)
 

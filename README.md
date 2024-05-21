@@ -34,10 +34,17 @@ Frontend
 
 
 
-![](https://velog.velcdn.com/images/jyp423/post/22f2636c-4bbe-4427-9d3b-c9a14d2a6b24/image.PNG)![](https://velog.velcdn.com/images/jyp423/post/a84df446-9b61-47b5-be13-3142b5b9a9b1/image.PNG)![](https://velog.velcdn.com/images/jyp423/post/b6f0a9fb-ec92-45ec-b4f9-d816acb2d2dd/image.PNG)![](https://velog.velcdn.com/images/jyp423/post/a75d22de-c77b-4ffd-a4a5-68c80aa901c3/image.PNG)![](https://velog.velcdn.com/images/jyp423/post/224afe0b-8d44-4db6-8529-06691dd4e0f5/image.PNG)<img width="602" alt="잇다이미지" src="https://github.com/Uangi/ITDA/assets/97930866/5d252094-0fc9-4d7d-8e49-023ace2390ef">
+![](https://velog.velcdn.com/images/jyp423/post/22f2636c-4bbe-4427-9d3b-c9a14d2a6b24/image.PNG)![](https://velog.velcdn.com/images/jyp423/post/a84df446-9b61-47b5-be13-3142b5b9a9b1/image.PNG)![](https://velog.velcdn.com/images/jyp423/post/b6f0a9fb-ec92-45ec-b4f9-d816acb2d2dd/image.PNG)![](https://velog.velcdn.com/images/jyp423/post/a75d22de-c77b-4ffd-a4a5-68c80aa901c3/image.PNG)![](https://velog.velcdn.com/images/jyp423/post/224afe0b-8d44-4db6-8529-06691dd4e0f5/image.PNG)
 
+![이미지파일첨부](https://github.com/Uangi/ITDA/assets/97930866/b0005df6-0fce-46d0-88de-5de1118a41e9)
+![로그인](https://github.com/Uangi/ITDA/assets/97930866/3a1bde34-1e92-49b2-9bd1-bb2171592fca)
 
-https://github.com/Uangi/ITDA/assets/97930866/01d0ba11-21c3-4588-be6c-c4d333c97df1
+![만남신청하기](https://github.com/Uangi/ITDA/assets/97930866/5d018e18-a51f-4465-8ff6-ec8d9fe4a4a7)
+
+![만남요청받기](https://github.com/Uangi/ITDA/assets/97930866/2b461191-2e6b-43d3-a8dd-7da8d4debb34)
+
+![고객센터](https://github.com/Uangi/ITDA/assets/97930866/8113998b-6087-4310-9195-25c622116ed7)
+
 ![잇다땡큐](https://github.com/Uangi/ITDA/assets/97930866/5391fd8e-ada9-4fdc-8534-fd9825738f7c)
 
 

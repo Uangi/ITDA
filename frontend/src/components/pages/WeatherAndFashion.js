@@ -3,24 +3,9 @@ import key from '../../apikey.js';
 import axios from 'axios';
 import address from '../../API_KEY';
 import './WeatherAndFashion.css';
-// import './Weather.css';
 import './Weather.css';
+import cityList from './CityNamesList.js';
 
-const cityNamesMap = {
-    '서울': 'Seoul',
-    '부산': 'Busan',
-    '인천': 'Incheon',
-    '대구': 'Daegu',
-    '대전': 'daejeon',
-    '광주': 'gwangju',
-    '울산': 'ulsan',
-    '제주': 'jeju',
-    '고양': 'goyang',
-    '세종': 'sejong',
-    '용인': 'yongin',
-    '용산': 'yongsan',
-    '파주': 'paju'
-};
 
 const WeatherAndFashion = () => {
     const [currentTime, setCurrentTime] = useState('');
@@ -28,7 +13,7 @@ const WeatherAndFashion = () => {
     const [cityName, setCityName] = useState('');
     const [fashionData, setFashionData] = useState([]);
     const [fashionDataFetched, setFashionDataFetched] = useState(false);
-
+    
     useEffect(() => {
         const convertTime = () => {
             const now = new Date();
@@ -42,22 +27,22 @@ const WeatherAndFashion = () => {
 
             try {
                 const WEATHER_API_KEY = key.WEATHER_API_KEY;
-                const cityNameInEnglish = cityNamesMap[cityName] || cityName;
-                const weatherResponse = await axios.post(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameInEnglish},kr&appid=${WEATHER_API_KEY}`);
+                const cityNameInEnglish = cityList[cityName] || cityName;
+                const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameInEnglish},kr&appid=${WEATHER_API_KEY}`);
                 setWeatherData(weatherResponse.data);
             } catch (error) {
-                console.error('Error fetching weather data:', error);
+                // console.error('Error fetching weather data:', error);
             }
         };
 
         const currentTime = convertTime();
         setCurrentTime(currentTime);
         
-        if (cityName.trim() !== '') {
+        if (cityName.trim().length >= 2) {
             fetchWeatherData();
         }
 
-    });
+    }, [cityName]);
 
 
     const handleSubmit = (e) => {

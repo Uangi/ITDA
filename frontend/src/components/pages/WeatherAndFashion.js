@@ -27,6 +27,7 @@ const WeatherAndFashion = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [cityName, setCityName] = useState('');
     const [fashionData, setFashionData] = useState([]);
+    const [fashionDataFetched, setFashionDataFetched] = useState(false);
 
     useEffect(() => {
         const convertTime = () => {
@@ -38,12 +39,12 @@ const WeatherAndFashion = () => {
         };
 
         const fetchWeatherData = async () => {
+
             try {
                 const WEATHER_API_KEY = key.WEATHER_API_KEY;
                 const cityNameInEnglish = cityNamesMap[cityName] || cityName;
-                const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameInEnglish},kr&appid=${WEATHER_API_KEY}`);
+                const weatherResponse = await axios.post(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameInEnglish},kr&appid=${WEATHER_API_KEY}`);
                 setWeatherData(weatherResponse.data);
-                await axios.get(`${address.backendaddress}/csvToDatabase`, {withCredentials : true});
             } catch (error) {
                 console.error('Error fetching weather data:', error);
             }
@@ -56,11 +57,13 @@ const WeatherAndFashion = () => {
             fetchWeatherData();
         }
 
-    }, [cityName]);
+    });
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
     };
+
 
     const handleFashionButtonClick = async () => {
         try {
@@ -70,7 +73,11 @@ const WeatherAndFashion = () => {
         }
     };
 
+
     const getFashionData = async () => {
+
+    if (!fashionDataFetched) {
+
         try {
             const response = await axios.get(`${address.backendaddress}/api/fashion`);
             const filteredFashionData = response.data.filter((item, index) => index !== 0);
@@ -81,9 +88,11 @@ const WeatherAndFashion = () => {
                 description: item.description.replace(/"/g, '')
             }));
             setFashionData(formattedFashionData);
+            setFashionDataFetched(true);
         } catch (error) {
             console.error('Error fetching fashion data:', error);
         }
+    }
     };
 
     return (
@@ -101,18 +110,18 @@ const WeatherAndFashion = () => {
                 <div class="cmp-cur-weather wbg wbg-type2 BGDB00">
                     <ul class="wrap-1">
                         <li class="w-icon w-temp no-w">
-                            <span class="hid">{currentTime}{cityName}의 기온 </span><span class="wic DB00 large"></span>
+                            <span classNameName="hid">{currentTime}{cityName}의 기온 </span><span classNameName="wic DB00 large"></span>
                         </li>
 		
 			
 		
 	</ul>
 	<ul class="wrap-2 no-underline">
-		<li><span class="lbl ic-hm">현재 기온<small>&nbsp;</small></span><span class="val">{weatherData.main.temp}℃</span></li>
+		<li><span className="lbl ic-hm">현재 기온<small>&nbsp;</small></span><span className="val">{weatherData.main.temp}℃</span></li>
 		
-		<li><span class="lbl ic-wind">최저 기온<small>&nbsp;</small></span><span class="val">{weatherData.main.temp_min}℃</span></li>
+		<li><span className="lbl ic-wind">최저 기온<small>&nbsp;</small></span><span className="val">{weatherData.main.temp_min}℃</span></li>
 		
-		<li><span class="lbl rn-hr1 ic-rn">최대 기온</span><span class="val">{weatherData.main.temp_max}℃</span></li>
+		<li><span className="lbl rn-hr1 ic-rn">최대 기온</span><span className="val">{weatherData.main.temp_max}℃</span></li>
 	</ul>
 </div>
 

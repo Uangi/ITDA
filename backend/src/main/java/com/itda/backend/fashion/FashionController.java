@@ -1,8 +1,6 @@
 package com.itda.backend.fashion;
 
 import java.util.List;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,18 +16,14 @@ public class FashionController {
         this.fashionService = fashionService;
     }
 
-    @CrossOrigin
     @GetMapping("/fashion")
-    public List<Fashion> getFashionDataFromDB() {
-        
-        return fashionRepository.findAll();
+    public List<Fashion> getFashionDataFromDB() throws Exception {
+        getFashionDataFromService();
+        return fashionRepository.findAll(); // "fashion"
     }
 
-    @CrossOrigin
-    @GetMapping
-    public String fashion(Model model) throws Exception {
+        public List<Fashion> getFashionDataFromService() throws Exception {
         List<Fashion> fashionList = fashionService.getFashionDatas();
-        model.addAttribute("fashion", fashionList);
-        return "fashion";
+        return fashionList; // 저장된 데이터를 반환
     }
 }

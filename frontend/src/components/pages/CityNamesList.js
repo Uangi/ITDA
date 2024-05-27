@@ -107,7 +107,6 @@ const cityList = {
     '함양': 'Hamyang',
     '거창': 'Geochang',
     '합천': 'Hapcheon',
-    '제주': 'Jeju',
     '서귀포': 'Seogwipo',
     '춘천': 'Chuncheon',
     '원주': 'Wonju',

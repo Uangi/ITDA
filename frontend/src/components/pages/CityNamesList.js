@@ -1,4 +1,5 @@
 const cityList = {
+    '일산': 'ilsan-dong',
     '서울': 'Seoul',
     '부산': 'Busan',
     '인천': 'Incheon',

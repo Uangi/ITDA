@@ -18,7 +18,7 @@
 | 최원재 | BE, FE | 지도 api 활용, 결제시스템, 로그인 |
 ***
 #### **TECH STACK**
-Backend
+Backend<br/>
 ☑️ Java 8<br/>
 ☑️ SpringBoot<br/>
 ☑️ Spring JPA<br/>
@@ -26,7 +26,7 @@ Backend
 ☑️ OpenWeatherMap Api<br/>
 ☑️ GeoCoding Api<br/>
 
-Frontend
+Frontend<br/>
 ☑️  React<br/>
 ☑️  axios<br/>
 

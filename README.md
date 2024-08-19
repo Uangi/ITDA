@@ -19,16 +19,16 @@
 ***
 #### **TECH STACK**
 Backend
-- [x] Java 8
-- [x] SpringBoot
-- [x] Spring JPA
-- [x] Mybatis
-- [x] OpenWeatherMap Api
-- [x] GeoCoding Api
+☑️ Java 8
+☑️ SpringBoot
+☑️ Spring JPA
+☑️ Mybatis
+☑️ OpenWeatherMap Api
+☑️ GeoCoding Api
 
 Frontend
-- [x]  React
-- [x]  axios
+☑️  React
+☑️  axios
 
 
 
